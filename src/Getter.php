@@ -15,5 +15,5 @@ trait Getter
      *
      * @return \Orno\Di\Container
      */
-    abstract public function getContainer();
+    abstract protected function getContainer();
 }

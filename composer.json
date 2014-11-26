@@ -12,15 +12,9 @@
             "role": "Developer"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/phprest/phrest"
-        }
-    ],
     "require": {
         "php": ">=5.4.0",
-        "phprest/phrest": "dev-master",
+        "phprest/phrest": "~0.1",
         "doctrine/orm": "~2.4.6",
         "doctrine/migrations": "dev-master",
         "symfony/yaml": "~2.5"

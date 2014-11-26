@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "90faf83970a309d427d5ed6547ce1ee7",
+    "hash": "3d261af6b5614c42ef393c09f9de1736",
     "packages": [
         {
             "name": "alexbilbie/proton",
@@ -855,16 +855,16 @@
         },
         {
             "name": "nikic/fast-route",
-            "version": "v0.2.0",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/FastRoute.git",
-                "reference": "7dc9a43cb856debc22fe158a1144018e16f7a637"
+                "reference": "57a2aec2d597f166c4139e44953bc42b7eaf9e54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/7dc9a43cb856debc22fe158a1144018e16f7a637",
-                "reference": "7dc9a43cb856debc22fe158a1144018e16f7a637",
+                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/57a2aec2d597f166c4139e44953bc42b7eaf9e54",
+                "reference": "57a2aec2d597f166c4139e44953bc42b7eaf9e54",
                 "shasum": ""
             },
             "require": {
@@ -894,7 +894,7 @@
                 "router",
                 "routing"
             ],
-            "time": "2014-05-17 11:33:04"
+            "time": "2014-11-26 18:36:25"
         },
         {
             "name": "orno/di",
@@ -1141,16 +1141,16 @@
         },
         {
             "name": "phprest/phrest",
-            "version": "dev-master",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phprest/phrest.git",
-                "reference": "93dcd73e5bb704f04b656f8c2e68fac7fb3f9ee6"
+                "reference": "0178025ea3847e04008223d097ad36caa429d1ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phprest/phrest/zipball/93dcd73e5bb704f04b656f8c2e68fac7fb3f9ee6",
-                "reference": "93dcd73e5bb704f04b656f8c2e68fac7fb3f9ee6",
+                "url": "https://api.github.com/repos/phprest/phrest/zipball/0178025ea3847e04008223d097ad36caa429d1ad",
+                "reference": "0178025ea3847e04008223d097ad36caa429d1ad",
                 "shasum": ""
             },
             "require": {
@@ -1161,6 +1161,7 @@
             },
             "suggest": {
                 "phprest/phrest-service-jsonmapper": "For mapping Json Object to Class.",
+                "phprest/phrest-service-rdbms": "For managins Relational Databases.",
                 "phprest/phrest-service-validator": "For validating Entities.",
                 "zircote/swagger-php": "For creating your Api documentation."
             },
@@ -1170,6 +1171,7 @@
                     "Phrest\\": "src"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1191,11 +1193,7 @@
                 "rest",
                 "restful"
             ],
-            "support": {
-                "source": "https://github.com/phprest/phrest/tree/master",
-                "issues": "https://github.com/phprest/phrest/issues"
-            },
-            "time": "2014-11-21 12:14:46"
+            "time": "2014-11-26 22:39:32"
         },
         {
             "name": "psr/log",
@@ -1740,7 +1738,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "phprest/phrest": 20,
         "doctrine/migrations": 20
     },
     "prefer-stable": false,
