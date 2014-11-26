@@ -16,7 +16,7 @@
         "php": ">=5.4.0",
         "phprest/phrest": "~0.1",
         "doctrine/orm": "~2.4.6",
-        "doctrine/migrations": "1.0-ALPHA1",
+        "doctrine/migrations": "~1.0@dev",
         "symfony/yaml": "~2.5"
     },
     "config": {
