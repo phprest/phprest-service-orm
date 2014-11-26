@@ -7,7 +7,7 @@ trait Getter
      */
     public function serviceRdbms()
     {
-        $this->getContainer()->get(Config::getServiceName());
+        return $this->getContainer()->get(Config::getServiceName());
     }
 
     /**
