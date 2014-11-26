@@ -1,0 +1,60 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/../../../autoload.php';
+
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
+use Doctrine\DBAL\Migrations\Configuration\Configuration;
+
+$env = getenv('PHREST') ? : null;
+
+$rdbmsConfig = require_once(__DIR__ . '/../../../../app/config/rdbms.php');
+
+if ( ! is_null($env)) {
+    $rdbmsConfig = require_once(__DIR__ . '/../../../../app/config/' . $env . '/rdbms.php');
+}
+
+$entityManager = EntityManager::create(
+    $rdbmsConfig->database,
+    Setup::createAnnotationMetadataConfiguration($rdbmsConfig->annotationDirs)
+);
+
+$helperSet = ConsoleRunner::createHelperSet($entityManager);
+$helperSet->set(new \Symfony\Component\Console\Helper\DialogHelper(), 'dialog');
+
+$migrationConfig = new Configuration($helperSet->get('db')->getConnection());
+$migrationConfig->setMigrationsDirectory($rdbmsConfig->migration->mainDir);
+$migrationConfig->setMigrationsNamespace($rdbmsConfig->migration->namespace);
+$migrationConfig->setMigrationsTableName($rdbmsConfig->migration->tableName);
+$migrationConfig->setName($rdbmsConfig->migration->name);
+$migrationConfig->registerMigrationsFromDirectory($migrationConfig->getMigrationsDirectory());
+foreach ($rdbmsConfig->migration->individualDirs as $migrationDir) {
+    $migrationConfig->registerMigrationsFromDirectory($migrationDir);
+}
+
+$diffCmd = new \Doctrine\DBAL\Migrations\Tools\Console\Command\DiffCommand();
+$diffCmd->setMigrationConfiguration($migrationConfig);
+$executeCmd = new \Doctrine\DBAL\Migrations\Tools\Console\Command\ExecuteCommand();
+$executeCmd->setMigrationConfiguration($migrationConfig);
+$generateCmd = new \Doctrine\DBAL\Migrations\Tools\Console\Command\GenerateCommand();
+$generateCmd->setMigrationConfiguration($migrationConfig);
+$migrateCmd = new \Doctrine\DBAL\Migrations\Tools\Console\Command\MigrateCommand();
+$migrateCmd->setMigrationConfiguration($migrationConfig);
+$statusCmd = new \Doctrine\DBAL\Migrations\Tools\Console\Command\StatusCommand();
+$statusCmd->setMigrationConfiguration($migrationConfig);
+$versionCmd = new \Doctrine\DBAL\Migrations\Tools\Console\Command\VersionCommand();
+$versionCmd->setMigrationConfiguration($migrationConfig);
+
+\Doctrine\ORM\Tools\Console\ConsoleRunner::run(
+    $helperSet,
+    [
+        $diffCmd,
+        $executeCmd,
+        $generateCmd,
+        $migrateCmd,
+        $statusCmd,
+        $versionCmd
+    ]
+);

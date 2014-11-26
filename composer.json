@@ -1,0 +1,33 @@
+{
+    "name": "phprest/phrest-service-rdbms",
+    "description": "Phrest Rdbms Service.",
+    "keywords": ["micro", "framework", "rest", "restful", "api", "service", "rdbms", "orm", "database"],
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Adam Balogh",
+            "email": "baloghbh@gmail.com",
+            "homepage": "http://code-chronicle.blogspot.com",
+            "role": "Developer"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/phprest/phrest"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "phprest/phrest": "dev-master",
+        "doctrine/orm": "~2.4.6",
+        "doctrine/migrations": "dev-master",
+        "symfony/yaml": "~2.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Phrest\\Service\\Rdbms\\": "src"
+        }
+    }
+}
