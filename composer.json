@@ -25,6 +25,10 @@
         "doctrine/migrations": "dev-master",
         "symfony/yaml": "~2.5"
     },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "bin": ["bin/rdbms"],
     "autoload": {
         "psr-4": {
             "Phrest\\Service\\Rdbms\\": "src"
