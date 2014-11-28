@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "75d3f98f3d19cb5d2cafb2bdf717ab36",
+    "hash": "4d845db9103688af27d2da6e2bd4c15b",
     "packages": [
         {
             "name": "alexbilbie/proton",
@@ -1141,16 +1141,16 @@
         },
         {
             "name": "phprest/phrest",
-            "version": "0.1.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phprest/phrest.git",
-                "reference": "0178025ea3847e04008223d097ad36caa429d1ad"
+                "reference": "6490cdeb7d9740aea1c8edce6cb43018b351aec8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phprest/phrest/zipball/0178025ea3847e04008223d097ad36caa429d1ad",
-                "reference": "0178025ea3847e04008223d097ad36caa429d1ad",
+                "url": "https://api.github.com/repos/phprest/phrest/zipball/6490cdeb7d9740aea1c8edce6cb43018b351aec8",
+                "reference": "6490cdeb7d9740aea1c8edce6cb43018b351aec8",
                 "shasum": ""
             },
             "require": {
@@ -1193,7 +1193,7 @@
                 "rest",
                 "restful"
             ],
-            "time": "2014-11-26 22:39:32"
+            "time": "2014-11-28 14:21:40"
         },
         {
             "name": "psr/log",
@@ -1738,6 +1738,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "phprest/phrest": 20,
         "doctrine/migrations": 20
     },
     "prefer-stable": false,
