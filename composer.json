@@ -19,9 +19,6 @@
         "doctrine/migrations": "~1.0@dev",
         "symfony/yaml": "~2.5"
     },
-    "config": {
-        "bin-dir": "bin"
-    },
     "bin": ["bin/rdbms"],
     "autoload": {
         "psr-4": {
