@@ -16,7 +16,9 @@ class Service implements Serviceable
      */
     public function register(Container $container, Configurable $config)
     {
-        /** @var Config $config */
+        if ( ! $config instanceof Config) {
+            throw new \InvalidArgumentException('Wrong Config object');
+        }
 
         $entityManager = EntityManager::create(
             $config->database,
