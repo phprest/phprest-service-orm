@@ -5,7 +5,7 @@ trait Getter
     /**
      * @return \Doctrine\ORM\EntityManager
      */
-    public function serviceRdbms()
+    protected function serviceRdbms()
     {
         return $this->getContainer()->get(Config::getServiceName());
     }
