@@ -1,6 +1,6 @@
 <?php namespace Phrest\Service\Rdbms;
 
-use Phrest\Service\Contract\Configurable;
+use Phrest\Service\Configurable;
 use Phrest\Service\Rdbms\Config\Migration;
 
 class Config implements Configurable
