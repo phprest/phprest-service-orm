@@ -22,7 +22,9 @@ class Service implements Serviceable
 
         $entityManager = EntityManager::create(
             $config->database,
-            Setup::createAnnotationMetadataConfiguration($config->annotationDirs)
+            Setup::createAnnotationMetadataConfiguration(
+                $config->annotationDirs, $config->dev, $config->proxyDir, $config->cache, false
+            )
         );
 
         $container->singleton($config->getServiceName(), $entityManager);
