@@ -1,11 +1,11 @@
-<?php namespace Phrest\Service\Rdbms;
+<?php namespace Phprest\Service\Orm;
 
 trait Getter
 {
     /**
      * @return \Doctrine\ORM\EntityManager
      */
-    protected function serviceRdbms()
+    protected function serviceOrm()
     {
         return $this->getContainer()->get(Config::getServiceName());
     }

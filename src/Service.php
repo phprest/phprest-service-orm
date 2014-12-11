@@ -1,7 +1,7 @@
-<?php namespace Phrest\Service\Rdbms;
+<?php namespace Phprest\Service\Orm;
 
-use Phrest\Service\Serviceable;
-use Phrest\Service\Configurable;
+use Phprest\Service\Serviceable;
+use Phprest\Service\Configurable;
 use Orno\Di\Container;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;

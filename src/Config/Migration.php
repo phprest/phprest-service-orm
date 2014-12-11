@@ -1,4 +1,4 @@
-<?php namespace Phrest\Service\Rdbms\Config;
+<?php namespace Phprest\Service\Orm\Config;
 
 class Migration
 {

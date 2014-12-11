@@ -1,7 +1,7 @@
-<?php namespace Phrest\Service\Rdbms;
+<?php namespace Phprest\Service\Orm;
 
-use Phrest\Service\Configurable;
-use Phrest\Service\Rdbms\Config\Migration;
+use Phprest\Service\Configurable;
+use Phprest\Service\Orm\Config\Migration;
 use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Cache\ArrayCache;
 
@@ -78,6 +78,6 @@ class Config implements Configurable
      */
     static public function getServiceName()
     {
-        return 'rdbms';
+        return 'orm';
     }
 }

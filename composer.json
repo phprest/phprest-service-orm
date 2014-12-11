@@ -1,7 +1,7 @@
 {
-    "name": "phprest/phrest-service-rdbms",
-    "description": "Phrest Rdbms Service.",
-    "keywords": ["micro", "framework", "rest", "restful", "api", "service", "rdbms", "orm", "database"],
+    "name": "phprest/phprest-service-orm",
+    "description": "Phprest Orm Service.",
+    "keywords": ["framework", "rest", "restful", "api", "service", "rdbms", "orm", "database"],
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -14,15 +14,15 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "phprest/phrest": "dev-master",
+        "phprest/phprest": "dev-master",
         "doctrine/orm": "~2.4.6",
         "doctrine/migrations": "~1.0@dev",
         "symfony/yaml": "~2.5"
     },
-    "bin": ["bin/rdbms"],
+    "bin": ["bin/phprest-service-orm"],
     "autoload": {
         "psr-4": {
-            "Phrest\\Service\\Rdbms\\": "src"
+            "Phprest\\Service\\Orm\\": "src"
         }
     }
 }
