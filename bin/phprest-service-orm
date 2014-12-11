@@ -7,14 +7,13 @@ use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 use Doctrine\DBAL\Migrations\Configuration\Configuration;
+use Phprest\Service\Orm\Command;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
 AnnotationRegistry::registerLoader('class_exists');
 
 $env = getenv('PHPREST_ENV') ? : null;
-
 $ormConfig = require_once(__DIR__ . '/../../../../app/config/orm.php');
-
 if ( ! is_null($env)) {
     $ormConfig = require_once(__DIR__ . '/../../../../app/config/' . $env . '/orm.php');
 }
@@ -27,37 +26,79 @@ $entityManager = EntityManager::create(
 $helperSet = ConsoleRunner::createHelperSet($entityManager);
 $helperSet->set(new \Symfony\Component\Console\Helper\DialogHelper(), 'dialog');
 
-$migrationConfig = new Configuration($helperSet->get('db')->getConnection());
-$migrationConfig->setMigrationsDirectory($ormConfig->migration->mainDir);
-$migrationConfig->setMigrationsNamespace($ormConfig->migration->namespace);
-$migrationConfig->setMigrationsTableName($ormConfig->migration->tableName);
-$migrationConfig->setName($ormConfig->migration->name);
-$migrationConfig->registerMigrationsFromDirectory($migrationConfig->getMigrationsDirectory());
-foreach ($ormConfig->migration->individualDirs as $migrationDir) {
-    $migrationConfig->registerMigrationsFromDirectory($migrationDir);
-}
-
-$diffCmd = new \Doctrine\DBAL\Migrations\Tools\Console\Command\DiffCommand();
-$diffCmd->setMigrationConfiguration($migrationConfig);
-$executeCmd = new \Doctrine\DBAL\Migrations\Tools\Console\Command\ExecuteCommand();
-$executeCmd->setMigrationConfiguration($migrationConfig);
-$generateCmd = new \Doctrine\DBAL\Migrations\Tools\Console\Command\GenerateCommand();
-$generateCmd->setMigrationConfiguration($migrationConfig);
-$migrateCmd = new \Doctrine\DBAL\Migrations\Tools\Console\Command\MigrateCommand();
-$migrateCmd->setMigrationConfiguration($migrationConfig);
-$statusCmd = new \Doctrine\DBAL\Migrations\Tools\Console\Command\StatusCommand();
-$statusCmd->setMigrationConfiguration($migrationConfig);
-$versionCmd = new \Doctrine\DBAL\Migrations\Tools\Console\Command\VersionCommand();
-$versionCmd->setMigrationConfiguration($migrationConfig);
 
 \Doctrine\ORM\Tools\Console\ConsoleRunner::run(
     $helperSet,
-    [
+    array_merge(
+        getMigrationCommands($helperSet, $ormConfig),
+        getFixtureCommands($entityManager, $ormConfig)
+    )
+);
+
+
+
+/**
+ * @param $entityManager
+ * @param $ormConfig
+ *
+ * @return array
+ */
+function getFixtureCommands($entityManager, $ormConfig)
+{
+    if (is_null($ormConfig->fixture)) {
+        return [];
+    }
+
+    return [
+        new Command\Fixture\Get($ormConfig->fixture->mainDir, $ormConfig->fixture->individualDirs),
+        new Command\Fixture\Set($ormConfig->fixture->mainDir, $ormConfig->fixture->individualDirs, $entityManager),
+        new Command\Fixture\Append($ormConfig->fixture->mainDir, $ormConfig->fixture->individualDirs, $entityManager)
+    ];
+}
+
+/**
+ * @param $helperSet
+ * @param $ormConfig
+ *
+ * @return array
+ */
+function getMigrationCommands($helperSet, $ormConfig)
+{
+    if (is_null($ormConfig->migration)) {
+        return [];
+    }
+
+    $migrationConfig = new Configuration($helperSet->get('db')->getConnection());
+    $migrationConfig->setMigrationsDirectory($ormConfig->migration->mainDir);
+    $migrationConfig->setMigrationsNamespace($ormConfig->migration->namespace);
+    $migrationConfig->setMigrationsTableName($ormConfig->migration->tableName);
+    $migrationConfig->setName($ormConfig->migration->name);
+    $migrationConfig->registerMigrationsFromDirectory($migrationConfig->getMigrationsDirectory());
+    foreach ($ormConfig->migration->individualDirs as $migrationDir) {
+        $migrationConfig->registerMigrationsFromDirectory($migrationDir);
+    }
+
+    $diffCmd = new \Doctrine\DBAL\Migrations\Tools\Console\Command\DiffCommand();
+    $diffCmd->setMigrationConfiguration($migrationConfig);
+    $executeCmd = new \Doctrine\DBAL\Migrations\Tools\Console\Command\ExecuteCommand();
+    $executeCmd->setMigrationConfiguration($migrationConfig);
+    $generateCmd = new \Doctrine\DBAL\Migrations\Tools\Console\Command\GenerateCommand();
+    $generateCmd->setMigrationConfiguration($migrationConfig);
+    $migrateCmd = new \Doctrine\DBAL\Migrations\Tools\Console\Command\MigrateCommand();
+    $migrateCmd->setMigrationConfiguration($migrationConfig);
+    $statusCmd = new \Doctrine\DBAL\Migrations\Tools\Console\Command\StatusCommand();
+    $statusCmd->setMigrationConfiguration($migrationConfig);
+    $versionCmd = new \Doctrine\DBAL\Migrations\Tools\Console\Command\VersionCommand();
+    $versionCmd->setMigrationConfiguration($migrationConfig);
+
+    return [
         $diffCmd,
         $executeCmd,
         $generateCmd,
         $migrateCmd,
         $statusCmd,
         $versionCmd
-    ]
-);
+    ];
+}
+
+

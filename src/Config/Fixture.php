@@ -1,28 +1,13 @@
 <?php namespace Phprest\Service\Orm\Config;
 
-class Migration
+class Fixture
 {
-    /**
-     * @var string
-     */
-    public $name = 'Application Migrations';
-
-    /**
-     * @var string
-     */
-    public $namespace = 'Application\Migrations';
-
-    /**
-     * @var string
-     */
-    public $tableName = 'migration_versions';
-
     /**
      * Main migration directory's path
      *
      * @var string
      */
-    public $mainDir;
+    public $mainDir = '';
 
     /**
      * Individual migration directories' paths
@@ -32,7 +17,7 @@ class Migration
     public $individualDirs = [];
 
     /**
-     * @param string $mainDir Main migration directory's path
+     * @param string $mainDir Main fixture directory's path
      * @param array $individualDirs
      */
     public function __construct($mainDir, $individualDirs = [])

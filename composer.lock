@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "988aa40cc5095c486c56938e62e777ae",
+    "hash": "a4bc81db17db8629269e856884cd53d9",
     "packages": [
         {
             "name": "alexbilbie/proton",
@@ -340,6 +340,62 @@
                 "spl"
             ],
             "time": "2014-05-21 19:28:51"
+        },
+        {
+            "name": "doctrine/data-fixtures",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/data-fixtures.git",
+                "reference": "b4a135c7db56ecc4602b54a2184368f440cac33e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/b4a135c7db56ecc4602b54a2184368f440cac33e",
+                "reference": "b4a135c7db56ecc4602b54a2184368f440cac33e",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": ">=2.2,<2.5-dev",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "doctrine/orm": ">=2.2,<2.5-dev"
+            },
+            "suggest": {
+                "doctrine/mongodb-odm": "For loading MongoDB ODM fixtures",
+                "doctrine/orm": "For loading ORM fixtures",
+                "doctrine/phpcr-odm": "For loading PHPCR ODM fixtures"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Doctrine\\Common\\DataFixtures": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com",
+                    "homepage": "http://www.jwage.com/",
+                    "role": "Creator"
+                }
+            ],
+            "description": "Data Fixtures for all Doctrine Object Managers",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "database"
+            ],
+            "time": "2013-07-10 17:04:07"
         },
         {
             "name": "doctrine/dbal",
@@ -1153,12 +1209,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phprest/phprest.git",
-                "reference": "30f831dbfec9c3a08ecef8e61f65d573a53699f9"
+                "reference": "7d10174eb8d50821a0e689c6257797695015eb05"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phprest/phprest/zipball/30f831dbfec9c3a08ecef8e61f65d573a53699f9",
-                "reference": "30f831dbfec9c3a08ecef8e61f65d573a53699f9",
+                "url": "https://api.github.com/repos/phprest/phprest/zipball/7d10174eb8d50821a0e689c6257797695015eb05",
+                "reference": "7d10174eb8d50821a0e689c6257797695015eb05",
                 "shasum": ""
             },
             "require": {
@@ -1168,8 +1224,8 @@
                 "willdurand/negotiation": "~1.3.4"
             },
             "suggest": {
-                "phprest/phprest-service-jsonmapper": "For mapping Json Object to Class.",
-                "phprest/phprest-service-rdbms": "For managins Relational Databases.",
+                "phprest/phprest-service-orm": "For managing Relational Databases.",
+                "phprest/phprest-service-request-filter": "For filtering Entites.",
                 "phprest/phprest-service-validator": "For validating Entities.",
                 "zircote/swagger-php": "For creating your Api documentation."
             },
@@ -1191,7 +1247,7 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Php Rest Framework. Simple, Easy, Extensible.",
+            "description": "Php Rest Framework.",
             "keywords": [
                 "api",
                 "framework",
@@ -1199,7 +1255,7 @@
                 "rest",
                 "restful"
             ],
-            "time": "2014-12-10 23:29:53"
+            "time": "2014-12-11 16:15:08"
         },
         {
             "name": "psr/log",
