@@ -7,7 +7,7 @@ class Fixture
      *
      * @var string
      */
-    public $mainDir = '';
+    public $mainDir;
 
     /**
      * Individual migration directories' paths
