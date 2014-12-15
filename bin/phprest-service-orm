@@ -83,14 +83,18 @@ function getMigrationCommands($helperSet, $ormConfig)
         return [];
     }
 
-    $migrationConfig = new Configuration($helperSet->get('db')->getConnection());
-    $migrationConfig->setMigrationsDirectory($ormConfig->migration->mainDir);
-    $migrationConfig->setMigrationsNamespace($ormConfig->migration->namespace);
-    $migrationConfig->setMigrationsTableName($ormConfig->migration->tableName);
-    $migrationConfig->setName($ormConfig->migration->name);
-    $migrationConfig->registerMigrationsFromDirectory($migrationConfig->getMigrationsDirectory());
-    foreach ($ormConfig->migration->individualDirs as $migrationDir) {
-        $migrationConfig->registerMigrationsFromDirectory($migrationDir);
+    try {
+        $migrationConfig = new Configuration($helperSet->get('db')->getConnection());
+        $migrationConfig->setMigrationsDirectory($ormConfig->migration->mainDir);
+        $migrationConfig->setMigrationsNamespace($ormConfig->migration->namespace);
+        $migrationConfig->setMigrationsTableName($ormConfig->migration->tableName);
+        $migrationConfig->setName($ormConfig->migration->name);
+        $migrationConfig->registerMigrationsFromDirectory($migrationConfig->getMigrationsDirectory());
+        foreach ($ormConfig->migration->individualDirs as $migrationDir) {
+            $migrationConfig->registerMigrationsFromDirectory($migrationDir);
+        }
+    } catch (\Exception $e) {
+        error($e->getMessage());
     }
 
     $diffCmd = new \Doctrine\DBAL\Migrations\Tools\Console\Command\DiffCommand();
