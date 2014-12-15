@@ -9,14 +9,29 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\DBAL\Migrations\Configuration\Configuration;
 use Phprest\Service\Orm\Command;
 use Doctrine\Common\Annotations\AnnotationRegistry;
+use Symfony\Component\Console\Output\ConsoleOutput;
+
+function error($errorString) { (new ConsoleOutput())->writeln('<fg=red>' . $errorString . '</fg=red>'); exit(1); }
+
+$ormConfigPath = __DIR__ . '/../../../../app/config/orm.php';
+
+if ( ! file_exists($ormConfigPath)) {
+    if ( ! ($paths = @include_once(__DIR__ . '/../../../../paths.php'))) {
+        error(__DIR__ . '/../../../../paths.php' . ' does not exist');
+    }
+    if ( ! array_key_exists('service.orm.config', $paths)) {
+        error('service.orm.config array key does not exist in ' . __DIR__ . '/../../../../paths.php');
+    }
+    if ( ! file_exists($paths['service.orm.config'])) {
+        error($paths['service.orm.config'] . ' does not exist');
+    }
+
+    $ormConfigPath = $paths['service.orm.config'];
+}
 
 AnnotationRegistry::registerLoader('class_exists');
 
-$env = getenv('PHPREST_ENV') ? : null;
-$ormConfig = require_once(__DIR__ . '/../../../../app/config/orm.php');
-if ( ! is_null($env)) {
-    $ormConfig = require_once(__DIR__ . '/../../../../app/config/' . $env . '/orm.php');
-}
+$ormConfig = require_once $ormConfigPath;
 
 $entityManager = EntityManager::create(
     $ormConfig->database,
@@ -100,5 +115,3 @@ function getMigrationCommands($helperSet, $ormConfig)
         $versionCmd
     ];
 }
-
-
