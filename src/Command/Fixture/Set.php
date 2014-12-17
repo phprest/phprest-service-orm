@@ -61,7 +61,7 @@ class Set extends Command
         $loader = new Loader();
         $purger = new ORMPurger();
         $purger->setPurgeMode(ORMPurger::PURGE_MODE_TRUNCATE);
-        $executor = new ORMExecutor($this->em, new ORMPurger());
+        $executor = new ORMExecutor($this->em, $purger);
 
         $loader->loadFromDirectory($this->mainDir);
         foreach ($this->dirs as $dir) {
