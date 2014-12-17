@@ -27,6 +27,6 @@ class Service implements Serviceable
             )
         );
 
-        $container->singleton($config->getServiceName(), $entityManager);
+        $container->add($config->getServiceName(), $entityManager);
     }
 }
