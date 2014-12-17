@@ -59,6 +59,8 @@ class Set extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $loader = new Loader();
+        $purger = new ORMPurger();
+        $purger->setPurgeMode(ORMPurger::PURGE_MODE_TRUNCATE);
         $executor = new ORMExecutor($this->em, new ORMPurger());
 
         $loader->loadFromDirectory($this->mainDir);
