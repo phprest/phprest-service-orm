@@ -5,12 +5,12 @@ class Migration
     /**
      * @var string
      */
-    public $name = 'Application Migrations';
+    public $name = 'App Migrations';
 
     /**
      * @var string
      */
-    public $namespace = 'Application\Migrations';
+    public $namespace = 'App\Migrations';
 
     /**
      * @var string
