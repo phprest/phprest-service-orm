@@ -10,7 +10,7 @@ class Migration
     /**
      * @var string
      */
-    public $namespace = 'App\Migrations';
+    public $namespace = 'App\Orm\Migrations';
 
     /**
      * @var string
